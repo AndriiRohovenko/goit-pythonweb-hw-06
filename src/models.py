@@ -9,7 +9,7 @@ class Base(DeclarativeBase):
 
 class Group(Base):
     __tablename__ = "groups"
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str]
     student_count: Mapped[int]
     students: Mapped[list["Student"]] = relationship(back_populates="group")
@@ -17,7 +17,7 @@ class Group(Base):
 
 class Student(Base):
     __tablename__ = "students"
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str]
     age: Mapped[int]
     group_id: Mapped[int] = mapped_column(ForeignKey("groups.id"))
@@ -27,14 +27,14 @@ class Student(Base):
 
 class Teacher(Base):
     __tablename__ = "teachers"
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str]
     courses: Mapped[list["Course"]] = relationship(back_populates="teacher")
 
 
 class Course(Base):
     __tablename__ = "courses"
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     title: Mapped[str]
     description: Mapped[str]
     teacher_id: Mapped[int] = mapped_column(ForeignKey("teachers.id"))
@@ -44,7 +44,7 @@ class Course(Base):
 
 class Point(Base):
     __tablename__ = "points"
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     value: Mapped[int]
     date: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now)
     student_id: Mapped[int] = mapped_column(ForeignKey("students.id"))

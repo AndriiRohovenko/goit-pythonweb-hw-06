@@ -14,12 +14,12 @@ def seed_data(session):
         Group(name="Group C", student_count=0),
     ]
     session.add_all(groups)
-    session.flush()  # IDs are now available
+    session.flush()
 
     # Create teachers
     teachers = [Teacher(name=fake.name()) for _ in range(5)]
     session.add_all(teachers)
-    session.flush()  # IDs are now available
+    session.flush()
 
     # Create courses
     courses = [
@@ -31,20 +31,18 @@ def seed_data(session):
         for i in range(8)
     ]
     session.add_all(courses)
-    session.flush()  # IDs are now available
+    session.flush()
 
     # Create students
     students = []
     for _ in range(50):
         group = groups[fake.random_int(min=0, max=2)]
         student = Student(
-            name=fake.name(),
-            age=fake.random_int(min=18, max=30),
-            group_id=group.id,
+            name=fake.name(), age=fake.random_int(min=18, max=30), group_id=group.id
         )
         students.append(student)
     session.add_all(students)
-    session.flush()  # IDs are now available
+    session.flush()
 
     # Update group student_count
     for group in groups:
