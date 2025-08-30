@@ -1,4 +1,4 @@
-from configuration import engine
+from configuration import engine, connection_string
 from sqlalchemy import text, select, func
 from sqlalchemy.orm import Session
 
